@@ -3,6 +3,7 @@ require 'rake/gempackagetask'
 require 'rubygems/specification'
 require 'date'
 require 'spec/rake/spectask'
+require 'rake/rdoctask'
 
 SUMMARY = "config_parser"
 GEM = "config_parser"
@@ -26,6 +27,14 @@ spec = Gem::Specification.new do |s|
 end
 
 task :default => :spec
+
+desc "Create documentation"
+Rake::RDocTask.new do |rd|
+  rd.main = "README.rdoc"
+  rd.rdoc_files.include("README.rdoc", "lib/**/*.rb")
+  rd.rdoc_dir = "doc"
+end
+
 
 desc "Run specs"
 Spec::Rake::SpecTask.new do |t|
