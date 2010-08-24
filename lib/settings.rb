@@ -42,12 +42,20 @@ class Settings
     override_property(property, value) if @enabled_properties.include?(property)
   end
   
-  # return array of all defined properties in format "key=value" 
-  def get_all_properties
-    properties = []
-     (@file_properties.get_params_keys + @env_properties.get_params_keys).uniq.each{|k| properties << "#{k} = #{get_property(k)}"}
-    properties
+  # return array of all defined properties in format "key=value" as string
+  def to_s
+    result = []
+    all_properties_hash.each do |k, v|
+      result << "#{k} = #{v}"
+    end
+    result.join("; ")
   end
+  
+  def all_properties_hash
+    properties = {}
+     (@file_properties.get_params_keys + @env_properties.get_params_keys).uniq.each{|k| properties [k] = get_property(k)}
+    properties
+  end 
   
   private
   # Override given setting (on personal settings level).

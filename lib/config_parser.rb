@@ -1,4 +1,3 @@
-# This class based on ParseConfig gem (Author is BJ Dierkes <wdierkes@5dollarwhitebox.org>)
 # This class was written to simplify the parsing of configuration
 # files in the format of "param = value".
 
@@ -30,7 +29,7 @@ class ConfigParser
   # where "@param" is actually the name of the param in the config
   # file.
   def get_value(param)
-    self.instance_variable_get("@#{param}")
+    self.params[param]
   end
   
   # This method is simple.  Should you need to override a value
@@ -38,13 +37,13 @@ class ConfigParser
   # the name of the paramater in the config file.
   #
   def override_value(param, value)
-    self.instance_variable_set("@#{param}", value)
+    self.params[param] = value
   end
   
   # This method will set the value of '@param' to nil (not in the config
   # file, only in the app).
   def nil_value(param)
-    self.instance_variable_set("@#{param}", nil)
+    self.params[param] = nil
   end
   
   # return all defined settings' names for this instance
@@ -83,7 +82,7 @@ class ConfigParser
     value = value.chomp.strip if value
     new_value = ''
     if (value)
-     new_value = (value =~ /^["](.*)["]$/) ?  $1 : value
+      new_value = (value =~ /^["](.*)["]$/) ?  $1 : value
     end
     new_value = try_convert_value(new_value)
     return var_name, new_value
@@ -106,7 +105,6 @@ class ConfigParser
   
   def set_var_from(line)
     var_name, new_value = parse_setting(line)
-    self.instance_variable_set("@#{var_name}", new_value)
     self.params["#{var_name}"] = new_value
   end
   

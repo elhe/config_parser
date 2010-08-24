@@ -17,6 +17,11 @@ describe ConfigParser do
     ENV[OPTS] = @saved_opts if @saved_opts and (not @saved_opts.to_s.empty?)
   end
   
+  it "should allow properties with dots in its names" do
+    @settings.get_property("name.with.dot").should eql(true)
+    @settings.send("name.with.dot").should eql(true)
+  end
+  
   it "should load settings from default file" do
     @settings.setting1.should eql(false)
   end
