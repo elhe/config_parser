@@ -2,12 +2,12 @@ require 'rubygems' unless ENV['NO_RUBYGEMS']
 require 'rake/gempackagetask'
 require 'rubygems/specification'
 require 'date'
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 require 'rake/rdoctask'
 
 SUMMARY = "config_parser"
 GEM = "config_parser"
-GEM_VERSION = "0.1.2"
+GEM_VERSION = "0.1.3"
 
 spec = Gem::Specification.new do |s|
   s.name = GEM
@@ -16,7 +16,7 @@ spec = Gem::Specification.new do |s|
   s.email = "pavlova.zoya@gmail.com"
   s.homepage = ""
   s.description = s.summary = GEM_VERSION
-  
+
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
   #  s.extra_rdoc_files = ["README", "LICENSE", 'TODO']
@@ -38,8 +38,8 @@ end
 
 desc "Run specs"
 Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = %w(-fs --color)
+  t.pattern ='spec/**/*_spec.rb'
+  t.rspec_opts = %w(-fs --color)
 end
 
 

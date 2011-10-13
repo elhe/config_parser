@@ -1,4 +1,4 @@
-File.expand_path(File.dirname(__FILE__) + '/config_parser')
+require File.expand_path(File.dirname(__FILE__) + '/config_parser')
 
 class Settings
   DEFAULT_SETTINGS_PATH = "resources/default.properties"
@@ -53,7 +53,7 @@ class Settings
   
   def all_properties_hash
     properties = {}
-     (@file_properties.get_params_keys + @env_properties.get_params_keys).uniq.each{|k| properties [k] = get_property(k)}
+     (@file_properties.get_params_keys + @env_properties.get_params_keys).uniq.each{|k| properties[k] = get_property(k)}
     properties
   end 
   
