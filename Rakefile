@@ -7,7 +7,7 @@ require 'rake/rdoctask'
 
 SUMMARY = "config_parser"
 GEM = "config_parser"
-GEM_VERSION = "0.1.3"
+GEM_VERSION = "0.1.4"
 
 spec = Gem::Specification.new do |s|
   s.name = GEM

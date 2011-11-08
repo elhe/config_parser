@@ -1,2 +1,3 @@
 0.1.2  allows properties names with dot. Usage: @settings.get_property("name.with.dot") or @settings.send("name.with.dot")
 0.1.3  allows define parameters  name=value from command line. also settings has access for all ENV variables
+0.1.4  bug fixes
