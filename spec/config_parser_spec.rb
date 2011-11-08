@@ -133,7 +133,7 @@ module AppSettings
 
     it "should raise exception when it gets unamed parameter" do
       message = "Invalid pair: =abcd. Expected: non empty name"
-      lambda { ConfigParser.new("spec/resources/test_invalid_settings.properties") }.should raise_error(ArgumentError, message)
+      lambda { ConfigParser.new(["spec/resources/test_invalid_settings.properties"]) }.should raise_error(ArgumentError, message)
     end
 
     it "should return empty string if it gets empty value" do

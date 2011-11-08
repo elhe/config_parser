@@ -1,9 +1,9 @@
 require 'rubygems' unless ENV['NO_RUBYGEMS']
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 require 'rubygems/specification'
 require 'date'
 require 'rspec/core/rake_task'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
 SUMMARY = "config_parser"
 GEM = "config_parser"
@@ -29,7 +29,7 @@ end
 task :default => :spec
 
 desc "Create documentation"
-Rake::RDocTask.new do |rd|
+RDoc::Task.new  do |rd|
   rd.main = "README.rdoc"
   rd.rdoc_files.include("README.rdoc", "lib/**/*.rb")
   rd.rdoc_dir = "doc"
@@ -37,13 +37,13 @@ end
 
 
 desc "Run specs"
-Spec::Rake::SpecTask.new do |t|
+RSpec::Core::RakeTask.new do |t|
   t.pattern ='spec/**/*_spec.rb'
   t.rspec_opts = %w(-fs --color)
 end
 
 
-Rake::GemPackageTask.new(spec) do |pkg|
+Gem::PackageTask.new(spec) do |pkg|
   pkg.gem_spec = spec
 end
 
