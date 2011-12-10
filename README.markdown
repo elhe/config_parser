@@ -4,7 +4,7 @@ A gem that provides 3-level configuration (settings from  environment varables, 
 ##Installation:
 gem install config_parser
 
-(for bundler: gem "config_parser", "0.1.3", :git => "git://github.com/elhe/config_parser.git")
+(for bundler: gem "config_parser", "0.1.4", :git => "git://github.com/elhe/config_parser.git")
 
 ## Build Status
 [![Build Status](https://secure.travis-ci.org/elhe/config_parser.png)](http://travis-ci.org/elhe/config_parser)
